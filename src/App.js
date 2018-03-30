@@ -1,16 +1,16 @@
-import React, { Component } from "react";
-import { BrowserRouter as Router, Route } from "react-router-dom";
-import { Provider } from "react-redux";
-import { createStore } from "redux";
-import "./App.css";
-import NavBar from "./components/navbar/navbar";
-import HomePage from "./pages/home/home";
-import reducers from "./reducers";
-import logo from "./logo.svg";
-import ButtonPageContainer from "./containers/button/buttonPage";
+import React, { Component } from 'react';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { Provider } from 'react-redux';
+import { createStore } from 'redux';
+import './App.css';
+import NavBar from './components/navbar/navbar';
+import HomePage from './pages/home/home';
+import reducers from './reducers';
+import logo from './logo.svg';
+import ButtonPageContainer from './containers/button/buttonPage';
 
 const store = createStore(reducers);
-const menu = [{ href: "/loading-button", name: "Button" }];
+const menu = [{ href: '/react-examples/loading-button', name: 'Button' }];
 
 class App extends Component {
   render() {
@@ -20,7 +20,7 @@ class App extends Component {
           <div>
             <NavBar
               brand={{
-                href: "/",
+                href: '/react-examples',
                 children: (
                   <img className="logo" src={logo} alt="React Examples" />
                 )
@@ -29,12 +29,12 @@ class App extends Component {
             />
             <Route
               exact
-              path="/"
+              path="/(react-examples)?"
               render={props => <HomePage {...props} menu={menu} />}
             />
             <Route
               exact
-              path="/loading-button"
+              path="/react-examples/loading-button"
               component={ButtonPageContainer}
             />
           </div>

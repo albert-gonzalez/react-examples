@@ -8,7 +8,7 @@ class Hero extends Component {
       <section className="hero is-info">
         <div className="hero-body">
           <div className="container">
-            <h1 className="title">{this.props.chidren}</h1>
+            <h1 className="title">{this.props.children}</h1>
           </div>
         </div>
       </section>
