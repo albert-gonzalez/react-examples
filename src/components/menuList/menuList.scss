@@ -1,0 +1,9 @@
+@import "bulma/sass/utilities/all.sass";
+@import "bulma/sass/components/menu.sass";
+
+.menu-list {
+  &.with-bullets li {
+    list-style-type: disc;
+    margin-left: 2em;
+  }
+}
