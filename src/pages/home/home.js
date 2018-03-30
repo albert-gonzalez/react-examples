@@ -10,7 +10,7 @@ class HomePage extends Component {
         <Hero>React Examples</Hero>
         <Section>
           <p>
-            This Page is intented to show some React Example which I made. I
+            This Page is intended to show some React Example which I made. I
             used React + Redux + React Router for the JS part and Bulma.io for
             the SCSS part. I hope these examples can be useful for you!
           </p>
