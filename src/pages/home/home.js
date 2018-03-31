@@ -9,7 +9,7 @@ class HomePage extends Component {
       <div>
         <Hero>React Examples</Hero>
         <Section>
-          <div class="content">
+          <div className="content">
             <p>
               This Page is intended to show some React Example which I made. I
               used React + Redux + React Router for the JS part and Bulma.io for
