@@ -1,4 +1,9 @@
 .result-box {
+
+  &.color-result {
+    min-height: 100px;
+  }
+
   &.full-width {
     width: 100%;
   }

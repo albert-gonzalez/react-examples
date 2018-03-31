@@ -23,7 +23,7 @@ class RgbPickerPage extends Component {
             <div className="column">
               <label className="label">Color Result:</label>
               <RgbPickerResultBox
-                className="full-width full-height"
+                className="full-width full-height color-result"
                 instance="rgbPicker"
               />
             </div>
