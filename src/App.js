@@ -8,9 +8,13 @@ import HomePage from './pages/home/home';
 import reducers from './reducers';
 import logo from './logo.svg';
 import ButtonPageContainer from './containers/button/buttonPage';
+import RgbPickerPage from './pages/rgbPicker/rgbPicker';
 
 const store = createStore(reducers);
-const menu = [{ href: '/react-examples/loading-button', name: 'Button' }];
+const menu = [
+  { href: '/react-examples/button', name: 'Button' },
+  { href: '/react-examples/rgb-picker', name: 'RGB Picker' }
+];
 
 class App extends Component {
   render() {
@@ -34,8 +38,13 @@ class App extends Component {
             />
             <Route
               exact
-              path="/react-examples/loading-button"
+              path="/react-examples/button"
               component={ButtonPageContainer}
+            />
+            <Route
+              exact
+              path="/react-examples/rgb-picker"
+              component={RgbPickerPage}
             />
           </div>
         </Router>

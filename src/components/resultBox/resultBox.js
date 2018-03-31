@@ -1,14 +1,24 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
+import './resultBox.css';
+
 class ResultBox extends Component {
   render() {
-    return <div>{this.props.children}</div>;
+    return (
+      <div
+        className={`result-box ${this.props.className}`}
+        style={this.props.style}
+      >
+        {this.props.children}
+      </div>
+    );
   }
 }
 
 ResultBox.propTypes = {
-  children: PropTypes.node.isRequired
+  children: PropTypes.node,
+  className: PropTypes.string
 };
 
 export default ResultBox;

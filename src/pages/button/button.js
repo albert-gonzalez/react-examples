@@ -8,7 +8,12 @@ class ButtonPage extends Component {
   render() {
     return (
       <div>
-        <Hero>Button examples</Hero>
+        <Hero>
+          Button examples
+          <span className="emoji" role="img" aria-label="button">
+            🔘
+          </span>
+        </Hero>
         <Section>
           <h2 className="title is-4">
             Normal button with onClick action bound
@@ -58,7 +63,6 @@ class ButtonPage extends Component {
     );
   }
 }
-
 function waitFor2Seconds(action) {
   return new Promise(resolve => {
     setTimeout(() => {
@@ -66,5 +70,4 @@ function waitFor2Seconds(action) {
     }, 2000);
   });
 }
-
 export default ButtonPage;
