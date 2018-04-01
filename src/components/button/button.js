@@ -3,13 +3,6 @@ import PropTypes from 'prop-types';
 import './button.css';
 
 class Button extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      loading: false
-    };
-  }
-
   render() {
     return (
       <button
