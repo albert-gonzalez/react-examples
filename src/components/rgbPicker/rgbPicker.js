@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 import './rgbPicker.css';
+import '../inputRange/inputRange.css';
 
 class RgbPicker extends Component {
   constructor(props) {

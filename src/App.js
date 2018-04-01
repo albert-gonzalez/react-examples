@@ -9,11 +9,13 @@ import reducers from './reducers';
 import logo from './logo.svg';
 import ButtonPageContainer from './containers/button/buttonPage';
 import RgbPickerPage from './pages/rgbPicker/rgbPicker';
+import MiniPaintPage from './pages/miniPaint/miniPaint';
 
 const store = createStore(reducers);
 const menu = [
   { href: '/react-examples/button', name: 'Button' },
-  { href: '/react-examples/rgb-picker', name: 'RGB Picker' }
+  { href: '/react-examples/rgb-picker', name: 'RGB Picker' },
+  { href: '/react-examples/mini-paint', name: 'Mini Paint' }
 ];
 
 class App extends Component {
@@ -45,6 +47,11 @@ class App extends Component {
               exact
               path="/react-examples/rgb-picker"
               component={RgbPickerPage}
+            />
+            <Route
+              exact
+              path="/react-examples/mini-paint"
+              component={MiniPaintPage}
             />
           </div>
         </Router>
