@@ -10,6 +10,7 @@ import logo from './logo.svg';
 import ButtonPageContainer from './containers/button/buttonPage';
 import RgbPickerPage from './pages/rgbPicker/rgbPicker';
 import MiniPaintPage from './pages/miniPaint/miniPaint';
+import Footer from './components/footer/footer';
 
 const store = createStore(reducers);
 const menu = [
@@ -33,26 +34,29 @@ class App extends Component {
               }}
               items={menu}
             />
-            <Route
-              exact
-              path="/(react-examples)?"
-              render={props => <HomePage {...props} menu={menu} />}
-            />
-            <Route
-              exact
-              path="/react-examples/button"
-              component={ButtonPageContainer}
-            />
-            <Route
-              exact
-              path="/react-examples/rgb-picker"
-              component={RgbPickerPage}
-            />
-            <Route
-              exact
-              path="/react-examples/mini-paint"
-              component={MiniPaintPage}
-            />
+            <div className="main-content">
+              <Route
+                exact
+                path="/(react-examples)?"
+                render={props => <HomePage {...props} menu={menu} />}
+              />
+              <Route
+                exact
+                path="/react-examples/button"
+                component={ButtonPageContainer}
+              />
+              <Route
+                exact
+                path="/react-examples/rgb-picker"
+                component={RgbPickerPage}
+              />
+              <Route
+                exact
+                path="/react-examples/mini-paint"
+                component={MiniPaintPage}
+              />
+            </div>
+            <Footer />
           </div>
         </Router>
       </Provider>
