@@ -74,10 +74,14 @@ class MiniPaint extends Component {
   }
 
   componentDidMount() {
+    this.resizeCallback = () => updateCanvas(this.props, this.refs.canvas);
+
     updateCanvas(this.props, this.refs.canvas);
-    window.addEventListener('resize', () =>
-      updateCanvas(this.props, this.refs.canvas)
-    );
+    window.addEventListener('resize', this.resizeCallback);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.resizeCallback);
   }
 
   componentDidUpdate() {
