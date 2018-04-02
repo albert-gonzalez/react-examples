@@ -15,19 +15,22 @@ class MenuList extends Component {
   render() {
     return (
       <aside className="menu">
-        <ul className="menu-list with-bullets">
-          {renderItems(this.props.menu)}
+        <ul className={`menu-list ${this.props.className || ''}`}>
+          {renderItems(this.props)}
         </ul>
       </aside>
     );
   }
 }
 
-function renderItems(items) {
+function renderItems(props) {
+  const items = props.menu;
+  const onItemClick = props.onItemClick;
+
   let linkKey = 1;
   return items.map(item => (
-    <li key={linkKey++}>
-      <Link to={item.href}>{item.name}</Link>
+    <li key={linkKey++} onClick={onItemClick}>
+      {item.href ? <Link to={item.href}>{item.name}</Link> : <a>{item.name}</a>}
     </li>
   ));
 }

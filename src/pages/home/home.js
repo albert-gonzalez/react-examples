@@ -23,7 +23,7 @@ class HomePage extends Component {
             </p>
             <hr />
             <h2 className="subtitle">Select a component from the list below</h2>
-            <MenuList menu={this.props.menu} />
+            <MenuList menu={this.props.menu} className="with-bullets" />
           </div>
         </Section>
       </div>

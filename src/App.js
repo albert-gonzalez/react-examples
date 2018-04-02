@@ -11,12 +11,14 @@ import ButtonPageContainer from './containers/button/buttonPage';
 import RgbPickerPage from './pages/rgbPicker/rgbPicker';
 import MiniPaintPage from './pages/miniPaint/miniPaint';
 import Footer from './components/footer/footer';
+import SuggestPage from './pages/suggest/suggest';
 
 const store = createStore(reducers);
 const menu = [
   { href: '/react-examples/button', name: 'Button' },
   { href: '/react-examples/rgb-picker', name: 'RGB Picker' },
-  { href: '/react-examples/mini-paint', name: 'Mini Paint' }
+  { href: '/react-examples/mini-paint', name: 'Mini Paint' },
+  { href: '/react-examples/suggest', name: 'Suggest' }
 ];
 
 class App extends Component {
@@ -54,6 +56,11 @@ class App extends Component {
                 exact
                 path="/react-examples/mini-paint"
                 component={MiniPaintPage}
+              />
+              <Route
+                exact
+                path="/react-examples/suggest"
+                component={SuggestPage}
               />
             </div>
             <Footer />
