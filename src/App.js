@@ -12,10 +12,12 @@ import RgbPickerPage from './pages/rgbPicker/rgbPicker';
 import MiniPaintPage from './pages/miniPaint/miniPaint';
 import Footer from './components/footer/footer';
 import SuggestPage from './pages/suggest/suggest';
+import ModalPageContainer from './containers/modal/modalPage';
 
 const store = createStore(reducers);
 const menu = [
   { href: '/react-examples/button', name: 'Button' },
+  { href: '/react-examples/modal', name: 'Modal' },
   { href: '/react-examples/rgb-picker', name: 'RGB Picker' },
   { href: '/react-examples/mini-paint', name: 'Mini Paint' },
   { href: '/react-examples/suggest', name: 'Suggest' }
@@ -46,6 +48,11 @@ class App extends Component {
                 exact
                 path="/react-examples/button"
                 component={ButtonPageContainer}
+              />
+              <Route
+                exact
+                path="/react-examples/modal"
+                component={ModalPageContainer}
               />
               <Route
                 exact

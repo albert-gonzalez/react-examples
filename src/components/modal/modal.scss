@@ -1,0 +1,9 @@
+@import "bulma/sass/utilities/all.sass";
+@import "bulma/sass/components/modal.sass";
+@import "bulma/sass/elements/box.sass";
+
+.modal {
+  .content {
+    margin: 1.5rem 0;
+  }
+}
