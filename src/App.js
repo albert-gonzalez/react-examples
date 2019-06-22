@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
@@ -23,59 +23,55 @@ const menu = [
   { href: '/react-examples/suggest', name: 'Suggest' }
 ];
 
-class App extends Component {
-  render() {
-    return (
-      <Provider store={store}>
-        <Router>
-          <div>
-            <NavBar
-              brand={{
-                href: '/react-examples',
-                children: (
-                  <img className="logo" src={logo} alt="React Examples" />
-                )
-              }}
-              items={menu}
+const App = () => {
+  return (
+    <Provider store={store}>
+      <Router>
+        <div>
+          <NavBar
+            brand={{
+              href: '/react-examples',
+              children: <img className="logo" src={logo} alt="React Examples" />
+            }}
+            items={menu}
+          />
+          <div className="main-content">
+            <Route
+              exact
+              path="/(react-examples)?"
+              render={props => <HomePage {...props} menu={menu} />}
             />
-            <div className="main-content">
-              <Route
-                exact
-                path="/(react-examples)?"
-                render={props => <HomePage {...props} menu={menu} />}
-              />
-              <Route
-                exact
-                path="/react-examples/button"
-                component={ButtonPageContainer}
-              />
-              <Route
-                exact
-                path="/react-examples/modal"
-                component={ModalPageContainer}
-              />
-              <Route
-                exact
-                path="/react-examples/rgb-picker"
-                component={RgbPickerPage}
-              />
-              <Route
-                exact
-                path="/react-examples/mini-paint"
-                component={MiniPaintPage}
-              />
-              <Route
-                exact
-                path="/react-examples/suggest"
-                component={SuggestPage}
-              />
-            </div>
-            <Footer />
+            <Route
+              exact
+              path="/react-examples/button"
+              component={ButtonPageContainer}
+            />
+            <Route
+              exact
+              path="/react-examples/modal"
+              component={ModalPageContainer}
+            />
+            <Route
+              exact
+              path="/react-examples/rgb-picker"
+              component={RgbPickerPage}
+            />
+            <Route
+              exact
+              path="/react-examples/mini-paint"
+              component={MiniPaintPage}
+            />
+            <Route
+              exact
+              path="/react-examples/suggest"
+              component={SuggestPage}
+            />
           </div>
-        </Router>
-      </Provider>
-    );
-  }
-}
+          <Footer />
+        </div>
+      </Router>
+    </Provider>
+  );
+};
 
 export default App;

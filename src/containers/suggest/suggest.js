@@ -40,14 +40,15 @@ const mapDispatchToProps = (dispatch, props) => {
 
 const throttledCall = throttle((value, options, props, dispatch) => {
   if (value.length >= 3) {
-    if (this.source) {
-      this.source.cancel('Operation canceled by the user.');
+    if (options.cancelToken) {
+      options.cancelToken.cancel('Operation canceled by the user.');
     }
     const CancelToken = axios.CancelToken;
-    this.source = CancelToken.source();
+    options.setCancelToken(CancelToken.source());
+    options.cancelToken = CancelToken.source();
     axios
       .get(`${options.url}?${options.queryParam}=${value}`, {
-        cancelToken: this.source.token
+        cancelToken: options.cancelToken.token
       })
       .then(data => {
         dispatch(
@@ -61,6 +62,9 @@ const throttledCall = throttle((value, options, props, dispatch) => {
   }
 }, 800);
 
-const SuggestContainer = connect(mapStateToProps, mapDispatchToProps)(Suggest);
+const SuggestContainer = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Suggest);
 
 export default SuggestContainer;

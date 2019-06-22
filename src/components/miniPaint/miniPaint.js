@@ -1,97 +1,82 @@
-import React, { Component } from 'react';
+import React, { useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import RgbPickerContainer from '../../containers/rgbPicker/rgbPicker';
 
 import './miniPaint.css';
 import '../inputRange/inputRange.css';
 
-class MiniPaint extends Component {
-  render() {
-    return (
-      <div className="mini-paint columns">
-        <div className="column">
-          <label className="label">Canvas:</label>
-          <canvas
-            width="400"
-            height="400"
-            ref="canvas"
-            className="canvas"
-            onMouseDown={event =>
-              this.props.onMouseDown(
-                event,
-                this.props.color,
-                this.props.brushSize
-              )
-            }
-            onTouchStart={event =>
-              this.props.onTouchStart(
-                event,
-                this.props.color,
-                this.props.brushSize
-              )
-            }
-            onMouseUp={this.props.onMouseUp}
-            onMouseOut={this.props.onMouseUp}
-            onTouchMove={event => {
-              this.props.onTouchMove(
-                event,
-                this.props.color,
-                this.props.brushSize
-              );
-            }}
-            onMouseMove={event =>
-              this.props.onMouseMove(
-                event,
-                this.props.color,
-                this.props.brushSize
-              )
-            }
-          />
-        </div>
-        <div className="column">
-          <label className="label">Color:</label>
-          <RgbPickerContainer instance={`rgbPicker_${this.props.instance}`} />
-          <hr />
-          <label className="label">Brush Size:</label>
-          <input
-            type="range"
-            min="1"
-            max="10"
-            value={this.props.brushSize}
-            onChange={this.props.onBrushSizeChange}
-          />
-          <input
-            className="input"
-            type="number"
-            min="1"
-            max="10"
-            value={this.props.brushSize}
-            onChange={this.props.onBrushSizeChange}
-          />
-        </div>
+const MiniPaint = ({
+  color,
+  brushSize,
+  drawnPositions,
+  onMouseDown,
+  onTouchStart,
+  onTouchMove,
+  onMouseMove,
+  onMouseUp,
+  instance,
+  onBrushSizeChange
+}) => {
+  const canvas = useRef();
+
+  useEffect(() => {
+    const resizeCallback = () =>
+      updateCanvas({ drawnPositions }, canvas.current);
+    window.addEventListener('resize', resizeCallback);
+
+    updateCanvas({ drawnPositions }, canvas.current);
+
+    return () => window.removeEventListener('resize', resizeCallback);
+  }, [drawnPositions]);
+
+  return (
+    <div className="mini-paint columns">
+      <div className="column">
+        <label className="label">Canvas:</label>
+        <canvas
+          width="400"
+          height="400"
+          ref={canvas}
+          className="canvas"
+          onMouseDown={event => onMouseDown(event, color, brushSize)}
+          onTouchStart={event => onTouchStart(event, color, brushSize)}
+          onMouseUp={onMouseUp}
+          onMouseOut={onMouseUp}
+          onTouchMove={event => {
+            onTouchMove(event, color, brushSize);
+          }}
+          onMouseMove={event => onMouseMove(event, color, brushSize)}
+        />
       </div>
-    );
-  }
-
-  componentDidMount() {
-    this.resizeCallback = () => updateCanvas(this.props, this.refs.canvas);
-
-    updateCanvas(this.props, this.refs.canvas);
-    window.addEventListener('resize', this.resizeCallback);
-  }
-
-  componentWillUnmount() {
-    window.removeEventListener('resize', this.resizeCallback);
-  }
-
-  componentDidUpdate() {
-    updateCanvas(this.props, this.refs.canvas);
-  }
-}
+      <div className="column">
+        <label className="label">Color:</label>
+        <RgbPickerContainer instance={`rgbPicker_${instance}`} />
+        <hr />
+        <label className="label">Brush Size:</label>
+        <input
+          type="range"
+          min="1"
+          max="10"
+          value={brushSize}
+          onChange={onBrushSizeChange}
+        />
+        <input
+          className="input"
+          type="number"
+          min="1"
+          max="10"
+          value={brushSize}
+          onChange={onBrushSizeChange}
+        />
+      </div>
+    </div>
+  );
+};
 
 function updateCanvas(props, canvas) {
   const context = canvas.getContext('2d');
   const rect = canvas.getBoundingClientRect();
+  canvas.width = canvas.offsetWidth;
   const scaleX = canvas.width / rect.width;
   const scaleY = canvas.height / rect.height;
 

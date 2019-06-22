@@ -1,48 +1,56 @@
-import React, { Component } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import './suggest.css';
 import MenuList from '../menuList/menuList';
 
-class Suggest extends Component {
-  render() {
-    return (
-      <div className="suggest" ref="suggest">
-        <input
-          className="input suggest-input"
-          type="text"
-          value={this.props.value}
-          onChange={event =>
-            this.props.onChange(event, {
-              queryParam: this.props.queryParam,
-              resultTransformer: this.props.resultTransformer,
-              url: this.props.url
-            })
-          }
-        />
-        <div className={`suggest-box ${this.props.showBox ? 'shown' : ''}`}>
-          <MenuList
-            menu={this.props.result}
-            onItemClick={this.props.onResultClick}
-          />
-        </div>
-      </div>
-    );
-  }
+const Suggest = ({
+  onClickOut,
+  onChange,
+  value,
+  queryParam,
+  resultTransformer,
+  url,
+  showBox,
+  onResultClick,
+  result
+}) => {
+  const [cancelToken, setCancelToken] = useState(null);
+  const suggest = useRef(null);
 
-  componentDidMount() {
-    this.onClickOutCallback = event => {
-      if (!this.refs.suggest.contains(event.target)) {
-        this.props.onClickOut();
+  useEffect(() => {
+    const onClickOutCallback = event => {
+      if (!suggest.current.contains(event.target)) {
+        onClickOut();
       }
     };
 
-    document.addEventListener('click', this.onClickOutCallback);
-  }
+    document.addEventListener('click', onClickOutCallback);
 
-  componentWillUnmount() {
-    document.removeEventListener('click', this.onClickOutCallback);
-  }
-}
+    return () => document.removeEventListener('click', onClickOutCallback);
+  }, [onClickOut]);
+
+  return (
+    <div className="suggest" ref={suggest}>
+      <input
+        className="input suggest-input"
+        type="text"
+        value={value}
+        onChange={event =>
+          onChange(event, {
+            queryParam: queryParam,
+            resultTransformer: resultTransformer,
+            url: url,
+            cancelToken,
+            setCancelToken
+          })
+        }
+      />
+      <div className={`suggest-box ${showBox ? 'shown' : ''}`}>
+        <MenuList menu={result} onItemClick={onResultClick} />
+      </div>
+    </div>
+  );
+};
 
 Suggest.propTypes = {
   onResultClick: PropTypes.func.isRequired,

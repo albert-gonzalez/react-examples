@@ -1,35 +1,26 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 import './menuList.css';
 
-class MenuList extends Component {
-  constructor(props) {
-    super(props);
+const MenuList = ({ className, menu, onItemClick }) => {
+  return (
+    <aside className="menu">
+      <ul className={`menu-list ${className || ''}`}>
+        {renderItems({ menu, onItemClick })}
+      </ul>
+    </aside>
+  );
+};
 
-    this.state = {
-      isActive: false
-    };
-  }
-  render() {
-    return (
-      <aside className="menu">
-        <ul className={`menu-list ${this.props.className || ''}`}>
-          {renderItems(this.props)}
-        </ul>
-      </aside>
-    );
-  }
-}
-
-function renderItems(props) {
-  const items = props.menu;
-  const onItemClick = props.onItemClick;
+function renderItems({ menu, onItemClick }) {
+  const items = menu;
 
   let linkKey = 1;
   return items.map(item => (
     <li key={linkKey++} onClick={onItemClick}>
+      {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
       {item.href ? <Link to={item.href}>{item.name}</Link> : <a>{item.name}</a>}
     </li>
   ));

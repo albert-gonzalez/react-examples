@@ -1,98 +1,114 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 
 import './rgbPicker.css';
 import '../inputRange/inputRange.css';
 
-class RgbPicker extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      loading: false
-    };
-  }
-
-  render() {
-    return (
-      <div className="rgb-picker">
-        <div>
-          <label className="label">Red:</label>
+const RgbPicker = ({
+  red,
+  onRedChange,
+  green,
+  onGreenChange,
+  blue,
+  onBlueChange,
+  alpha,
+  onAlphaChange
+}) => {
+  return (
+    <div className="rgb-picker">
+      <div className="field">
+        <label className="label">Red:</label>
+        <div className="control">
           <input
             type="range"
             min="0"
             max="255"
-            value={this.props.red}
-            onChange={this.props.onRedChange}
-          />
-          <input
-            className="input"
-            type="number"
-            min="0"
-            max="255"
-            value={this.props.red}
-            onChange={this.props.onRedChange}
+            value={red}
+            onChange={onRedChange}
           />
         </div>
-        <div>
-          <label className="label">Green:</label>
-          <input
-            type="range"
-            min="0"
-            max="255"
-            value={this.props.green}
-            onChange={this.props.onGreenChange}
-          />
+        <div className="control">
           <input
             className="input"
             type="number"
             min="0"
             max="255"
-            value={this.props.green}
-            onChange={this.props.onGreenChange}
-          />
-        </div>
-        <div>
-          <label className="label">Blue:</label>
-          <input
-            type="range"
-            min="0"
-            max="255"
-            value={this.props.blue}
-            onChange={this.props.onBlueChange}
-          />
-          <input
-            className="input"
-            type="number"
-            min="0"
-            max="255"
-            value={this.props.blue}
-            onChange={this.props.onBlueChange}
-          />
-        </div>
-        <div>
-          <label className="label">Alpha:</label>
-          <input
-            type="range"
-            min="0"
-            max="1"
-            step="0.01"
-            value={this.props.alpha}
-            onChange={this.props.onAlphaChange}
-          />
-          <input
-            className="input"
-            type="number"
-            min="0"
-            max="1"
-            step="0.01"
-            value={this.props.alpha}
-            onChange={this.props.onAlphaChange}
+            value={red}
+            onChange={onRedChange}
           />
         </div>
       </div>
-    );
-  }
-}
+      <div className="field">
+        <label className="label">Green:</label>
+        <div className="control">
+          <input
+            type="range"
+            min="0"
+            max="255"
+            value={green}
+            onChange={onGreenChange}
+          />
+        </div>
+        <div className="control">
+          <input
+            className="input"
+            type="number"
+            min="0"
+            max="255"
+            value={green}
+            onChange={onGreenChange}
+          />
+        </div>
+      </div>
+      <div className="field">
+        <label className="label">Blue:</label>
+        <div className="control">
+          <input
+            type="range"
+            min="0"
+            max="255"
+            value={blue}
+            onChange={onBlueChange}
+          />
+        </div>
+        <div className="control">
+          <input
+            className="input"
+            type="number"
+            min="0"
+            max="255"
+            value={blue}
+            onChange={onBlueChange}
+          />
+        </div>
+      </div>
+      <div className="field">
+        <label className="label">Alpha:</label>
+        <div className="control">
+          <input
+            type="range"
+            min="0"
+            max="1"
+            step="0.01"
+            value={alpha}
+            onChange={onAlphaChange}
+          />
+        </div>
+        <div className="control">
+          <input
+            className="input"
+            type="number"
+            min="0"
+            max="1"
+            step="0.01"
+            value={alpha}
+            onChange={onAlphaChange}
+          />
+        </div>
+      </div>
+    </div>
+  );
+};
 
 RgbPicker.propTypes = {
   red: PropTypes.number.isRequired,

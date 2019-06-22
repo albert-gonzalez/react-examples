@@ -1,22 +1,20 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import './button.css';
 
-class Button extends Component {
-  render() {
-    return (
+const Button = ({ onClick, disabled, children, className }) => {
+  return (
+    <div className="control">
       <button
-        className={`button ${this.props.className} ${
-          this.props.disabled ? 'is-loading' : ''
-        }`}
-        onClick={this.props.onClick()}
-        disabled={this.props.disabled}
+        className={`button ${className} ${disabled ? 'is-loading' : ''}`}
+        onClick={onClick()}
+        disabled={disabled}
       >
-        {this.props.children}
+        {children}
       </button>
-    );
-  }
-}
+    </div>
+  );
+};
 
 Button.propTypes = {
   disabled: PropTypes.bool.isRequired,
