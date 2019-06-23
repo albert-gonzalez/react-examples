@@ -13,6 +13,7 @@ import MiniPaintPage from './pages/miniPaint/miniPaint';
 import Footer from './components/footer/footer';
 import SuggestPage from './pages/suggest/suggest';
 import ModalPageContainer from './containers/modal/modalPage';
+import DropdownPage from './pages/dropdown/dropdown';
 
 const store = createStore(reducers);
 const menu = [
@@ -20,7 +21,8 @@ const menu = [
   { href: '/react-examples/modal', name: 'Modal' },
   { href: '/react-examples/rgb-picker', name: 'RGB Picker' },
   { href: '/react-examples/mini-paint', name: 'Mini Paint' },
-  { href: '/react-examples/suggest', name: 'Suggest' }
+  { href: '/react-examples/suggest', name: 'Suggest' },
+  { href: '/react-examples/dropdown', name: 'Dropdown' }
 ];
 
 const App = () => {
@@ -65,6 +67,11 @@ const App = () => {
               exact
               path="/react-examples/suggest"
               component={SuggestPage}
+            />
+            <Route
+              exact
+              path="/react-examples/dropdown"
+              component={DropdownPage}
             />
           </div>
           <Footer />
